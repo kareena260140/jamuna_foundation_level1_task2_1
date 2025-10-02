@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f6f8;
+    }
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+    .screen {
+      background: #eaeaea;
+      padding: 15px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #4caf50;
+      color: white;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .clear {
+      background: #f44336;
+    }
+    .clear:hover {
+      background: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Donation Calculator</h2>
+    <div class="screen" id="screen">0</div>
+    <div class="grid">
+      <button onclick="addAmount(10)">$10</button>
+      <button onclick="addAmount(50)">$50</button>
+      <button onclick="addAmount(100)">$100</button>
+      <button onclick="addAmount(200)">$200</button>
+      <button onclick="addAmount(500)">$500</button>
+      <button onclick="calculateImpact()">Impact</button>
+      <button class="clear" onclick="clearScreen()">Clear</button>
+    </div>
+  </div>
+
+  <script>
+    let totalDonation = 0;
+
+    function addAmount(amount) {
+      totalDonation += amount;
+      document.getElementById("screen").innerText = "$" + totalDonation;
+    }
+
+    function calculateImpact() {
+      // Example: 1 tree planted for every $5 donated
+      let trees = Math.floor(totalDonation / 5);
+      document.getElementById("screen").innerText = 
+        "$" + totalDonation + " = " + trees + " trees planted 🌳";
+    }
+
+    function clearScreen() {
+      totalDonation = 0;
+      document.getElementById("screen").innerText = "0";
+    }
+  </script>
+</body>
+</html>
